@@ -1,0 +1,48 @@
+
+  <md-tab-group>
+    <md-tab label="Tab 1">
+        <div id='map-wrapper' style='padding-left:10px;padding-right:10px;'>
+          <div id="sebm-google-map-container">
+            <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+            <sebm-google-map-marker 
+                        *ngFor="let m of places; let i = index"
+                        [latitude]="m.location.lat"
+                        [longitude]="m.location.lng" >
+              <sebm-google-map-info-window>
+                        {{m.name}}
+                      </sebm-google-map-info-window>
+            </sebm-google-map-marker>
+            </sebm-google-map>
+          </div>
+    
+        <div id="form-container">
+          <form id='sform' (ngSubmit)="getLocation();inputform.value=address;$event.preventDefault()" >
+              <md-input-container>
+                <input id='serinput' mdInput #inputform name="address"  [(ngModel)]='address'>
+              </md-input-container>
+              <button md-icon-button color='accent' type="submit"><md-icon>search</md-icon></button>
+          </form>
+              <p id='exp'>请输入地点/街道名称,搜索其相关附近注册地点</p>    
+            <div class="search-results"
+               infinite-scroll
+               [infiniteScrollDistance]="scrollDistance"
+               [infiniteScrollThrottle]="throttle"
+               (scrolled)="onScrollDown()">
+               <md-nav-list>
+                  <md-list-item  *ngFor="let place of places;let i = index" (click)='onSelect(place)'>
+                     <h3 md-line> {{place.name}} </h3>
+                     <p md-line> {{place.location.address}} </p>
+                     <button md-icon-button>
+                        <md-icon>directions</md-icon>
+                     </button>
+                  </md-list-item>
+              </md-nav-list>
+            </div>
+        </div>
+  </div>
+    </md-tab>
+     <md-tab label="Tab 2">
+    </md-tab>
+  </md-tab-group>
+
+

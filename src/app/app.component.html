@@ -1,0 +1,28 @@
+  
+<md-toolbar color="primary" class="container">
+
+  <div class="nav-right">
+    <button md-icon-button>
+    <md-icon>menu</md-icon>
+    </button>
+    My Map
+  </div>
+
+  <button md-button *ngIf="!isLoggedIn" (click)="openDialog()">Login</button>
+  
+    <div *ngIf="isLoggedIn">
+      <button id="float" md-fat [mdMenuTriggerFor]="menu"><img id='image' *ngIf="user.auth.photoURL" src={{user.auth.photoURL}} alt=""></button>
+
+      <button style='width:40px;height:40px;border-radius:100%;' id="float" md-fat [mdMenuTriggerFor]="menu"><img id='image' *ngIf="!user.auth.photoURL" src="../assets/img/sencery.jpeg" alt=""></button>
+      <md-menu #menu="mdMenu">
+      <button *ngIf='user.auth.displayName' md-menu-item>{{user.auth.displayName}}</button>
+      <button md-menu-item>{{user.auth.email||''}}</button>
+      <button md-menu-item  (click)='logOut()'>Logout</button>
+      </md-menu>
+    </div>
+     
+  </md-toolbar>
+
+<router-outlet></router-outlet>
+
+

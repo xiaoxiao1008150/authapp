@@ -1,0 +1,43 @@
+<h3 md-dialog-title >登录</h3>
+  <md-dialog-content>
+    <md-list *ngIf="!formShowing">
+      <h3 md-subheader>第三方登录</h3>
+      <md-list-item > 
+        <button md-raised-button  color='accent' (click)="loginGoogle()">
+            <i class="fa fa-google fa-2x" aria-hidden="true"></i>
+        </button>
+      </md-list-item>
+      <md-list-item>
+        <button md-raised-button  color='accent' (click)="loginGitHub()">
+          <i class="fa fa-github-alt fa-2x" aria-hidden="true"></i>
+        </button>
+      </md-list-item>
+      <md-list-item>
+        <button md-raised-button  color='accent' (click)="formShowing=!formShowing">
+          账号登录
+        </button>
+      </md-list-item>
+    </md-list>
+    <div *ngIf="formShowing" >
+       <form #formData='ngForm' class='form' (ngSubmit)="onSubmit(formData);$event.preventDefault()" >
+        <span class="error" *ngIf="error">{{ error }}</span>
+          
+        <md-input-container>
+          <input mdInput placeholder="Email address" (ngModel)="email" name="email" required 
+          #usernameRef='ngModel'>
+        </md-input-container>
+
+        <md-input-container>
+          <input mdInput type='password' placeholder="Password" (ngModel)="password" name="password" required>
+        </md-input-container>
+        <br/>
+        <button  md-button color='primary' type="submit" [disabled]="!formData.valid">submit
+        </button>
+    </form>
+    </div>     
+</md-dialog-content>
+
+<md-dialog-actions> 
+  <button md-button md-dialog-close >close!</button>
+  <button md-button *ngIf="formShowing" (click)='formShowing=!formShowing'>Back</button>
+</md-dialog-actions> 

@@ -1,0 +1,39 @@
+.sebm-google-map-container {
+  height: 500px;
+  width:400px;
+}
+
+#map-wrapper{
+  display: -webkit-flex;
+  display: flex;
+  margin-top:20px;
+}
+
+#form-container{
+  flex:1;
+  -webkit-flex:1;
+  margin-left:20px;
+}
+#serinput{
+  color:#333;
+  padding-left:5px;
+}
+#exp{
+  margin: 0;
+  font-size: 12px;
+  color: #ccc;
+}
+
+#sform{
+  display: -webkit-flex;
+  display: flex;
+}
+
+#sform md-input-container{
+   flex:1;
+  -webkit-flex:1;
+}
+
+#sform button{
+    margin: 10px 0 0 5px;
+}
